@@ -3,9 +3,9 @@ import { Footer, Form } from "../components";
 
 function Login() {
 	return (
-		<div>
+		<div className="login">
 			<Form />
-			<Footer />
+			{/* <Footer /> */}
 		</div>
 	);
 }
