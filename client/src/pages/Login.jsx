@@ -5,7 +5,7 @@ function Login() {
 	return (
 		<div className="login">
 			<Form />
-			{/* <Footer /> */}
+			<Footer />
 		</div>
 	);
 }

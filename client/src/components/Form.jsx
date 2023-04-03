@@ -12,16 +12,25 @@ import {
 import userIcon from "../assets/ic_user.svg";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useFormik } from "formik";
+import validationSchema from "../constants/validationSchema";
+import { userLogin } from "../api/authRequest";
 
 function Form() {
 	const [showPassword, setShowPassword] = useState(false);
 
 	const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-    const initialValues = {
-        email:"",
-        password:""
-    }
+	const formik = useFormik({
+		initialValues: {
+			email: "",
+			password: ""
+		},
+		validationSchema,
+		onSubmit: (values, { resetForm }) => {
+			console.log(values);
+            userLogin(values)
+		}
+	});
 
 	return (
 		<div className="form_container">
@@ -36,43 +45,60 @@ function Form() {
 				</p>
 			</div>
 			<div className="form">
-				<form>
-					<TextField
-						className="textfield"
-						id="outlined-basic"
-						label="Email Address"
-						variant="outlined"
-					/>
-					<FormControl variant="outlined" className="textfield">
-						<InputLabel htmlFor="outlined-adornment-password">
-							Password
-						</InputLabel>
-						<OutlinedInput
-							id="outlined-adornment-password"
-							type={showPassword ? "text" : "password"}
-							endAdornment={
-								<InputAdornment position="end">
-									<IconButton
-										aria-label="toggle password visibility"
-										onClick={handleClickShowPassword}
-										edge="end">
-										{showPassword ? (
-											<VisibilityOff />
-										) : (
-											<Visibility />
-										)}
-									</IconButton>
-								</InputAdornment>
-							}
-							label="Password"
+				<form noValidate onSubmit={formik.handleSubmit}>
+					<div className="input">
+						<TextField
+							className="textfield"
+							id="outlined-basic"
+							label="Email Address"
+							variant="outlined"
+							onChange={formik.handleChange}
+							name="email"
+							value={formik.values.email}
 						/>
-					</FormControl>
-					<a href="" className="link">
-						Forgot Password?
-					</a>
-					<button className="button" type="submit">
-						Sign In
-					</button>
+						{formik.touched.email && formik.errors.email ? (
+							<p className="formik_error">{formik.errors.email}</p>
+						) : null}
+						<FormControl variant="outlined" className="textfield">
+							<InputLabel htmlFor="outlined-adornment-password">
+								Password
+							</InputLabel>
+							<OutlinedInput
+								id="outlined-adornment-password"
+								name="password"
+								type={showPassword ? "text" : "password"}
+								onChange={formik.handleChange}
+								value={formik.values.password}
+								endAdornment={
+									<InputAdornment position="end">
+										<IconButton
+											aria-label="toggle password visibility"
+											onClick={handleClickShowPassword}
+											edge="end">
+											{showPassword ? (
+												<VisibilityOff />
+											) : (
+												<Visibility />
+											)}
+										</IconButton>
+									</InputAdornment>
+								}
+								label="Password"
+							/>
+						</FormControl>
+						{formik.touched.password && formik.errors.password ? (
+							<p className="formik_error">{formik.errors.password}</p>
+						) : null}
+					</div>
+
+					<div className="other">
+						<a href="" className="link">
+							Forgot Password?
+						</a>
+						<button className="button" type="submit">
+							Sign In
+						</button>
+					</div>
 				</form>
 			</div>
 		</div>
