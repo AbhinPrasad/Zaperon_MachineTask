@@ -145,27 +145,23 @@ form {
 	justify-content: center;
 }
 
-.button{
+.button {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
 .spinner {
-	border: 4px solid rgba(239, 233, 233, 0.1);
-	border-left-color: transparent;
-	border-radius: 50%;
 	width: 20px;
 	height: 20px;
-	animation: spin89345 1s linear infinite;
+	border: 3px solid rgba(0, 0, 0, 0.1);
+	border-top-color: #fff;
+	animation: spin013151 1s linear infinite;
+	border-radius: 100%;
 }
 
-@keyframes spin89345 {
-	0% {
-		transform: rotate(0deg);
-	}
-
-	100% {
+@keyframes spin013151 {
+	to {
 		transform: rotate(360deg);
 	}
 }
