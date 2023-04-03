@@ -1,8 +1,12 @@
 import React from 'react'
+import { Footer, Welcome } from '../components'
 
 function Home() {
   return (
-    <div>Home</div>
+    <div className='home'>
+      <Welcome/>
+      <Footer/>
+    </div>
   )
 }
 
