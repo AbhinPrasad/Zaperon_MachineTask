@@ -14,11 +14,16 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useFormik } from "formik";
 import validationSchema from "../constants/validationSchema";
 import { userLogin } from "../api/authRequest";
+import { useNavigate } from "react-router-dom";
+import { Spinner } from ".";
 
 function Form() {
 	const [showPassword, setShowPassword] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+	const navigate = useNavigate();
 
 	const formik = useFormik({
 		initialValues: {
@@ -28,7 +33,18 @@ function Form() {
 		validationSchema,
 		onSubmit: (values, { resetForm }) => {
 			console.log(values);
-            userLogin(values)
+			setLoading((prevState) => !prevState);
+			userLogin(values).then((res) => {
+				console.log(res);
+				setLoading(false);
+				const userData = {
+					email: res.data.email_id,
+					token: res.data.token
+				};
+				localStorage.setItem("user", JSON.stringify(userData));
+				resetForm({ values: "" });
+				navigate("/home");
+			});
 		}
 	});
 
@@ -96,7 +112,7 @@ function Form() {
 							Forgot Password?
 						</a>
 						<button className="button" type="submit">
-							Sign In
+							{loading ? <Spinner /> : "Sign In"}
 						</button>
 					</div>
 				</form>

@@ -5,4 +5,5 @@ const API = axios.create({ baseURL: BASEURL });
 
 export const userLogin = async (formData) => {
 	const response = await API.post("/login", formData);
+	return response;
 };
