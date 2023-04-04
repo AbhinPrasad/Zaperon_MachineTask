@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import {
 	TextField,
 	Box,
-	Grid,
+	Typography,
 	FormControl,
 	InputLabel,
 	InputAdornment,
 	OutlinedInput,
-	IconButton
+	IconButton,
+	Button,
+	Avatar
 } from "@mui/material";
 import userIcon from "../assets/ic_user.svg";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -49,42 +51,133 @@ function Form() {
 	});
 
 	return (
-		<div className="form_container">
-			<div className="user_icon">
-				<img src={userIcon} alt="" />
-			</div>
-			<div className="text">
-				<h2>Welcome!</h2>
-				<p>
-					Let's connect to your workspace
-					<br /> Please enter your email to continue.{" "}
-				</p>
-			</div>
-			<div className="form">
+		<Box
+			sx={{
+				display: "flex",
+				alignItems: "center",
+				// height: "520px",
+				flexDirection: "column",
+				// background: "grey",
+				height: {
+					md: 520,
+					sm: 480
+				}
+				// gap: {
+				// 	md: "35px"
+				// }
+			}}>
+			<Box
+				sx={{
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
+					opacity: "1",
+					background: "#efefef",
+					height: {
+						md: 100,
+                        sm:60
+					},
+					width: {
+						md: 100,
+                        sm:60
+					},
+					borderRadius: {
+						md: "70px",
+                        sm:30
+					},
+					marginTop: "40px"
+				}}>
+				<Avatar
+					src={userIcon}
+					sx={{
+						width: {
+							md: "50px"
+						},
+						height: {
+							md: "50px"
+						}
+					}}
+				/>
+			</Box>
+			<Box
+				sx={{
+					textAlign: "center",
+					display: "flex",
+					flexDirection: "column",
+				}}>
+				<Typography
+					sx={{
+						letterSpacing: "0px",
+						color: "#0b3558",
+						opacity: 1,
+						font: "normal normal bold 40px/65px Open Sans",
+						fontSize: {
+							lg: "40px",
+							md: "35px",
+                            sm:"30px"
+						}
+					}}>
+					Welcome!
+				</Typography>
+				<Typography
+					variant="h6"
+					sx={{
+						color: "#0b3558",
+						letterSpacing: "0px",
+						opacity: 1,
+						fontSize: { lg: "15px", md: "14px",sm:"12px" },
+					}}>
+					Let's connect to your workspace <br /> Please enter your email to
+					continue.{" "}
+				</Typography>
+			</Box>
+			<Box>
 				<form noValidate onSubmit={formik.handleSubmit}>
-					<div className="input">
+					<Box
+						sx={{
+							display: "flex",
+							flexDirection: "column",
+							gap: "10px",
+							marginTop: {
+								sm: "15px"
+							}
+						}}>
 						<TextField
-							className="textfield"
 							id="outlined-basic"
+							size="small"
 							label="Email Address"
 							variant="outlined"
 							onChange={formik.handleChange}
 							name="email"
 							value={formik.values.email}
+							sx={{ width: { md: "360px",sm:"330px" } }}
 						/>
 						{formik.touched.email && formik.errors.email ? (
-							<p className="formik_error">{formik.errors.email}</p>
+							<Typography
+								sx={{
+									color: "red",
+									lineHeight: "0",
+									margin: "5px",
+									fontWeight: "500",
+									fontSize: "12px"
+								}}>
+								{formik.errors.email}
+							</Typography>
 						) : null}
 						<FormControl variant="outlined" className="textfield">
-							<InputLabel htmlFor="outlined-adornment-password">
+							<InputLabel
+								htmlFor="outlined-adornment-password"
+								size="small">
 								Password
 							</InputLabel>
 							<OutlinedInput
 								id="outlined-adornment-password"
+								sx={{ width: { md: "360px" } }}
 								name="password"
 								type={showPassword ? "text" : "password"}
 								onChange={formik.handleChange}
 								value={formik.values.password}
+								size="small"
 								endAdornment={
 									<InputAdornment position="end">
 										<IconButton
@@ -103,21 +196,57 @@ function Form() {
 							/>
 						</FormControl>
 						{formik.touched.password && formik.errors.password ? (
-							<p className="formik_error">{formik.errors.password}</p>
+							<Typography
+								sx={{
+									color: "red",
+									lineHeight: "0",
+									margin: "5px",
+									fontWeight: "500",
+									fontSize: "12px"
+								}}>
+								{formik.errors.password}
+							</Typography>
 						) : null}
-					</div>
+					</Box>
 
-					<div className="other">
-						<a href="" className="link">
+					<Box
+						sx={{
+							display: "flex",
+							flexDirection: "column",
+							marginTop: "10px",
+							gap: {
+								lg: "5px"
+							}
+						}}>
+						<Typography
+							sx={{
+								textAlign: "end",
+								letterSpacing: "0px",
+								color: "#003fb9",
+								font: "normal normal 600 13px/27px Open Sans"
+							}}>
 							Forgot Password?
-						</a>
-						<button className="button" type="submit">
+						</Typography>
+						<Button
+							type="submit"
+							variant="contained"
+							sx={{
+								background: "#003fb9",
+								textTransform: "unset",
+								color: "#fff",
+								boxShadow: "0px 3px 6px #0000029",
+								font: "normal normal 600 13px/27px Open Sans",
+								borderRadius: "4px",
+								height: {
+									lg: "36px"
+								}
+							}}>
 							{loading ? <Spinner /> : "Sign In"}
-						</button>
-					</div>
+						</Button>
+					</Box>
 				</form>
-			</div>
-		</div>
+			</Box>
+		</Box>
 	);
 }
 

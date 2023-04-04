@@ -6,105 +6,10 @@ body {
 	font-family: "Open Sans", sans-serif;
 }
 
-.form_container {
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	/* position: relative;
-	top: 30px; */
-	/* background-color: blue; */
-	height: 520px;
-}
-
-.user_icon {
-	width: 100px;
-	height: 100px;
-	background: #efefef 0% 0% no-repeat padding-box;
-	opacity: 1;
-	border-radius: 70px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.user_icon img {
-	width: 50px;
-	height: 50px;
-}
-
-.text {
-	text-align: center;
-}
-
-.text h2 {
-	font: normal normal bold 40px/65px Open Sans;
-	letter-spacing: 0px;
-	color: #0b3558;
-	opacity: 1;
-	line-height: 0px;
-}
-
-.text p {
-	font: normal normal normal 15px/27px Open Sans;
-	letter-spacing: 0px;
-	color: #0b3558;
-	opacity: 1;
-}
-
-form {
+/* form {
 	display: flex;
 	flex-direction: column;
-}
-
-.input {
-	display: flex;
-	flex-direction: column;
-	/* gap: 30px; */
-	gap: 10px;
-}
-
-.textfield {
-	width: 336px;
-}
-
-.link {
-	text-align: end;
-	text-decoration: none;
-	letter-spacing: 0px;
-	color: #003fb9;
-	opacity: 1;
-	font: normal normal 600 13px/27px Open Sans;
-}
-
-.other {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-}
-
-.button {
-	width: 336px;
-	height: 44px;
-	background: #003fb9 0% 0% no-repeat padding-box;
-	box-shadow: 0px 3px 6px #00000029;
-	border-radius: 4px;
-	opacity: 1;
-	border: none;
-	color: #fff;
-	font: normal normal 600 13px/27px Open Sans;
-}
-
-.button:hover {
-	cursor: pointer;
-}
-
-.formik_error {
-	color: red;
-	font-size: 12px;
-	line-height: 0;
-	margin: 7px;
-	font-weight: 500;
-}
+} */
 
 .footer_container {
 	display: flex;
@@ -165,3 +70,4 @@ form {
 		transform: rotate(360deg);
 	}
 }
+

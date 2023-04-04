@@ -19,6 +19,8 @@ function Welcome() {
 			<div className="text">
 				<h2>Welcome!</h2>
                 <h4>{user}</h4>
+                <button className="logout">Logout</button>
+
 			</div>
 		</div>
 	);
